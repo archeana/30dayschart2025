@@ -19,9 +19,11 @@ export default function Home() {
               {/* Wrap the chart card with a Link to the chart detail page */}
               <Link href={`/charts/${chart.id}`} passHref>
                 <ChartCard
-                  {...chart}
-                  description={chart.description || "Default description"}
-                  chartImage={chart.image || "default-image-url"}
+                 id={chart.id}
+                 title={chart.title}
+                 image={chart.image}
+                 description={chart.prompt} 
+                 tags={chart.tags || []}
                 />
               </Link>
             </Grid>

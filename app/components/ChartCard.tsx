@@ -7,12 +7,12 @@ import Link from "next/link";
 type ChartCardProps = {
     id: number;
     title: string;
-    chartImage: string;
+    image: string;
     tags: string[];
     description?: string;
 };
 
-const ChartCard = ({ id, title, chartImage, tags }: ChartCardProps) => {
+const ChartCard = ({ id, title, image, tags, description }: ChartCardProps) => {
     return (
         <Link href={`/chart/${id}`} passHref legacyBehavior>
             <Card sx={{ width: "100%", height: "auto", boxShadow: 3, padding: 2, cursor: "pointer" }}>
@@ -21,7 +21,7 @@ const ChartCard = ({ id, title, chartImage, tags }: ChartCardProps) => {
                         {title}
                     </Typography>
                     <Image
-                        src={chartImage}
+                        src={image}
                         alt={title}
                         width={400}
                         height={300}
@@ -32,7 +32,10 @@ const ChartCard = ({ id, title, chartImage, tags }: ChartCardProps) => {
                         }}
                     />
                     <Typography variant="body2" color="text.secondary">
-                        {tags.join(", ")}
+                        {tags.join(", ") || "No tags available"}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ marginTop: 1 }}>
+                        {description || "No description available"}
                     </Typography>
                 </CardContent>
             </Card>

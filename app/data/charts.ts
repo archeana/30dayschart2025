@@ -1,52 +1,48 @@
+type chartData = {
+  id: number;
+  title: string;
+  prompt: string;
+  image?: string;
+  tags?: string[];
+  type?: string; 
+  chartData?: { name: string; value: number }[]; 
+  colors?: string[];  
+};
+
+
 export const chartData = [
   {
     id: 1,
     title: "Day 1",
     prompt: "Comparisons",
-    image: "/charts/day1.png", 
-    tags: ["Pie Chart", "Fractions", "Proportions"],
-    type: "pie",
-    chartData: [
-      { name: "Part A", value: 40 }, 
-      { name: "Part B", value: 30 },
-      { name: "Part C", value: 20 },
-      { name: "Part D", value: 10 },
-    ],
-    colors: ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"], 
-    description: "Description for Day 1 chart", 
+    image: "/charts/Day01.png", 
+    tags: ["Flourish", "Fractions", "Waffle"],
+    type: "pie",    
   },
   {
     id: 2,
     title: "Day 2",
     prompt: "Comparisons",
-    image: "/charts/day1.png", 
+    image: "/charts/Day02.png", 
     tags: ["slope"],
-    type: "bar",
-    chartData: [
-      { name: "Part A", value: 40 }, 
-      { name: "Part B", value: 30 },
-      { name: "Part C", value: 20 },
-      { name: "Part D", value: 10 },
-    ],
-    colors: ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"], 
-    description: "", 
+
   },
-  {
-    id: 3,
-    title: "Day 3",
-    prompt: "Comparisons",
-    image: "/charts/day1.png", 
-    tags: ["circular"],
-    type: "pie",
-    chartData: [
-      { name: "Part A", value: 40 }, 
-      { name: "Part B", value: 30 },
-      { name: "Part C", value: 20 },
-      { name: "Part D", value: 10 },
-    ],
-    colors: ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"], 
-    description: ""
-  },
+  // {
+  //   id: 2,
+  //   title: "Day 2",
+  //   prompt: "Comparisons",
+  //   image: "/charts/day1.png", 
+  //   tags: ["slope"],
+  //   type: "bar",
+  //   chartData: [
+  //     { name: "Part A", value: 40 }, 
+  //     { name: "Part B", value: 30 },
+  //     { name: "Part C", value: 20 },
+  //     { name: "Part D", value: 10 },
+  //   ],
+  //   colors: ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"], 
+  //   description: "", 
+  // },
  
 ];
 
