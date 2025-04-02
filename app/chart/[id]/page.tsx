@@ -1,45 +1,63 @@
-"use client";
+"use client"; 
 
 import { useRouter, useParams } from "next/navigation";
-import { Container, Typography, Button } from "@mui/material";
-import { chartData } from "../../data/charts";
-import CustomPieChart from "@/app/components/charts/PieChart";
+import { Container, Typography, Button, Box } from "@mui/material";
+import Image from "next/image"; 
+import { chartData as charts } from "../../data/charts";  
+import CustomChart from "@/app/components/charts/CustomChart";
+
+interface ChartData {
+  id: number;
+  title: string;
+  prompt: string;
+  image?: string;
+  tags?: string[];
+  type?: string;
+  chartData?: { name: string; value: number }[];  
+  colors?: string[];  
+}
 
 const ChartDetailPage = () => {
     const router = useRouter();
-    const { id } = useParams(); // Get the chart ID from the URL parameter
+    const { id } = useParams(); 
 
-    // Ensure the ID is valid before accessing chart data
+    //  the id is available
     if (!id) {
         return <Typography variant="h6">Loading...</Typography>;
     }
 
-    // Find the chart data by ID from the chartData array
-    const chart = chartData.find((chart) => chart.id === parseInt(id as string));
+    const chart = charts.find((chart) => chart.id === parseInt(id as string)) as ChartData;
 
+    // If chart is not found, display an error
     if (!chart) {
         return <Typography variant="h6">Chart not found</Typography>;
     }
 
     return (
         <Container sx={{ py: 4 }}>
-
-            {/* Back to Home Button */}
             <Button
                 variant="contained"
                 color="primary"
                 sx={{ margin: 2 }}
-                onClick={() => router.push("/")} // Navigate back to the home page
+                onClick={() => router.push("/")} 
             >
                 Back to Home
             </Button>
+            
             <Typography variant="h4" gutterBottom>
                 {chart.title}
             </Typography>
 
-            {/* Render the pie chart using Recharts */}
-            {/* Adjusted to pass correct props */}
-            <CustomPieChart chartData={chart.chartData} colors={chart.colors} />
+            {/* Check if chartData exists before rendering the chart */}
+            {chart.chartData ? (
+                // Render the CustomChart with chartData
+                <CustomChart chartData={chart.chartData} colors={chart.colors} type={""} />
+            ) : (
+                // If no chart data, render the image instead
+                <Box>
+                    <Image src={chart.image || "/default-image.png"} alt={chart.title} layout="responsive" width={500} height={300} />
+                </Box>
+            )}
         </Container>
     );
 }
